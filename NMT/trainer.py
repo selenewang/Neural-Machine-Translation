@@ -15,10 +15,9 @@ def train_step(in_sentence, out_sentence, model_sections, optimizing_params):
     input = Variable(torch.LongTensor(in_sentence).view(1,-1))
     input = input.cuda() if use_cuda else input
     encoder_output, encoder_hidden = model_sections['encoder'](input, encoder_hidden)
-    
+
     # initialize decoder hidden layer with final encoder hidden layer
     decoder_hidden = encoder_hidden[0].clone().view(1,1,-1)
-    
     # initialize loss to 0
     loss = 0 
     
